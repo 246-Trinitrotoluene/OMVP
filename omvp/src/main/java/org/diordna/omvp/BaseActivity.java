@@ -1,5 +1,8 @@
 package org.diordna.omvp;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -14,6 +17,12 @@ import org.diordna.omvp.view.BaseView;
 public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V>> extends AppCompatActivity implements View.OnClickListener {
 
     private P presenter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        getRealPresenter();
+    }
 
     /**
      * 获取Presenter对象
